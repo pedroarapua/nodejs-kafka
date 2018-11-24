@@ -8,9 +8,9 @@ let hierarchy = {};
 // Read from the librdtesting-01 topic... note that this creates a new stream on each call!
 const stream = Kafka.Consumer.createReadStream({
   'group.id': 'kafka',
-  'metadata.broker.list': (config.kafka.hosts || []).join(',')
+  'metadata.broker.list': config.kafka.hosts
 }, {}, {
-  topics: ['test']
+  topics: config.kafka.consumer.topics
 });
 
 stream.on('data', function(message) {

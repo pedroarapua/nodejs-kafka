@@ -6,9 +6,9 @@ const config = require('config');
 // Our producer with its Kafka brokers
 // This call returns a new writable stream to our topic 'topic-name'
 const stream = Kafka.Producer.createWriteStream({
-  'metadata.broker.list': (config.kafka.hosts || []).join(',')
+  'metadata.broker.list': config.kafka.hosts
 }, {}, {
-  topic: 'test'
+  topic: config.kafka.producer.topic
 });
 
 // Writes a message to the stream
